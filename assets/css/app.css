@@ -1,0 +1,50 @@
+:root {
+  --primary: #e53935;
+  --form-element-active-border-color: var(--primary);
+  --form-element-focus-color: var(--primary-focus);
+  --switch-color: var(--primary-inverse);
+  --switch-checked-background-color: var(--primary);
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, b, strong {
+  font-family: 'Roboto Slab', serif;
+}
+
+header h2 {
+  display: inline-block;
+  margin-bottom: 0;
+  padding: var(--nav-element-spacing-vertical) 0;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+main {
+  margin-top: 3rem;
+}
+
+input + small {
+  display: inline;
+}
+
+.gender label {
+  text-align: center;
+  font-size: 1.8em;
+  line-height: 1;
+}
+
+.gender label small {
+  font-size: .4em;
+}
+
+.gender input {
+  text-align: center;
+  font-size: 1.6em;
+}
+
+body > footer {
+  padding: 1rem 0;
+}

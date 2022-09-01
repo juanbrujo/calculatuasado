@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Cuánto debo comprar para el asado?</title>
+  <meta type="description" content="No te vuelvas loco calculando tu asado, te entregamos la herramienta perfecta. Indica la cantidad de comensales y cuál es tu presupuesto">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="mask-icon" href="assets/images/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" rel="stylesheet" />
+  <link href="assets/css/app.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="app">
+    <header class="container">
+      <h2>¿Cuánto 💲 debo 🤑 comprar 💸 para el asado 🍖 ?</h2>
+    </header>
+    <hr>
+
+    <main class="container">
+      <hgroup>
+        <h2>Calcula tu asado 🥩</h2>
+        <h3>Con esta herramienta ingresa la cantidad de invitados y el presupuesto que te calculará lo que debes comprar:</h3>
+      </hgroup>
+
+      <div class="grid">
+        <article>
+          <h4><small>1. </small> Cantidad de invitados:</h4>
+          <div class="grid gender">
+            <div>
+              <label>👨<br><small>Hombres</small></label>
+              <input type="number" min="0" max="25" placeholder="?" m-model="cantHombres">
+            </div>
+            <div>
+              <label>👩<br><small>Mujeres</small></label>
+              <input type="number" min="0" max="25" placeholder="?" m-model="cantMujeres">
+            </div>
+            <div>
+              <label>👶<br><small>Niños</small></label>
+              <input type="number" min="0" max="25" placeholder="?" m-model="cantNinos">
+            </div>
+          </div>
+
+          <h4><small>2. </small> ¿Cuál es tu presupuesto?</h4>
+          <label for="{{ presupuesto.name }}" m-for="presupuesto in presupuestos"><input type="radio" m-model="presupuestoNombre"  m-on:change="getPresupuestoSeleccionado" value="{{ presupuesto.name }}" id="{{ presupuesto.name }}">{{ presupuesto.name }} <small>({{ presupuesto.type }})</small></label>
+        </article>
+
+        <article>
+          <h3>Total de invitados: {{ totalInvitados }}</h3>
+          <ul m-if="debeMostrarResultados">
+            <li>
+              <b>{{ cantidadCarne }} kg.</b> de {{ presupuestoSeleccionado.food }}.
+              <p><small>Alternativas: {{ presupuestoSeleccionado.alternative }}</small>.</p>
+            </li>
+            <li m-if="presupuestoSeleccionado.name !== 'Poco'">
+              <b>{{ cantidadEmbutido }} kg.</b> de {{ presupuestoSeleccionado.embutido }}.
+            </li>
+            <li><b>{{ cantidadCarbon }} kg.</b> de carbón.</li>
+            <li><b>{{ cantidadPan }}</b> unidad(es) de pan marraqueta.</li>
+          </ul>
+
+          <div class="box-price" m-if="debeMostrarResultados">
+            <p class="precio-total">El costo total del asado es de <b>${{ monetyze(precioTotal) }}</b>.</p>
+            <p><b>${{ monetyze(precioCadaUno) }}</b> por cada uno de los {{ cantidadAdultos }} adultos.<br><small>(niños no pagan)</small></p>
+          </div>
+        </article>
+      </div>
+		</div>
+
+		<footer>
+      <hr>
+      <div class="container">
+        <p><small>Los cálculos son en base a valores reales de precios promedio de supermercados en Chile al año 2022. <a href="https://github.com/juanbrujo/calculatuasado" target="_blank">Código fuente libre</a>.</small></p>
+      </div>
+		</footer>
+	</main>
+
+	<script src="assets/js/mutable.min.js"></script>
+	<script src="assets/js/app.js"></script>
+</body>
+</html>
